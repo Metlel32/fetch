@@ -2,9 +2,11 @@
 
 // fetch
 let key = "pnyB5l1fffDf3bch5aPaFvmKdVJoajbtoPcZcyKW"
-let url = `https://api.nasa.gov/planetary/apod?count=20&api_key=${key}`
+let url = `https://api.nasa.gov/planetary/apod?start_date=2008-05-01&end_date=2008-06-01&api_key=${key}`
+let divCheck = document.getElementById("divCheck")
 
 fetch(url).then(rp => rp.json()).then(data => data.forEach(img =>  tarjetas(img, divTarjeta)))
+fetch(url).then(rp => rp.json()).then(data => data.forEach(check =>  crearCheck(check, divCheck)))
 
 
 
@@ -23,10 +25,31 @@ function tarjetas(array, padre){
       <p class="card-text">${array.explanation.substring(0,120)}...</p>
       <div class="card-body row align-items-end">
       
-      <a href="./detalles.html?value=${array.date}" class="btn btn-secondary align-bottom">See more</a>
+      <a href="./detalles.html?value=${array.date}" class="btn btn-secondary align-bottom ">See more</a>
       </div>
 
     </div>`
 
     padre.appendChild(div)
 }
+
+
+
+function crearCheck(obj, padreCheck){
+
+  let input = document.createElement("input")
+  input.type = "checkbox"
+  input.name = obj.date
+  input.classList.add("me-1")
+
+  //crear el label
+  let label = document.createElement("label")
+  label.htmlFor = obj.date
+  label.className = "me-4"  
+  label.textContent = obj.date
+
+  padreCheck.appendChild(input)
+  padreCheck.appendChild(label) 
+} 
+
+

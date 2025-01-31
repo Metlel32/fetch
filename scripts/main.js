@@ -8,7 +8,7 @@ const ruta = `https://api.nasa.gov/planetary/apod?date=2008-05-23&api_key=${key}
 
 
 
-// fetch(ruta).then(rp => rp.json()).then(data => imprimirImg(data.hdurl, data.date, data.explanation, data.title))
+fetch(ruta).then(rp => rp.json()).then(data => imprimirImg(data.hdurl, data.date, data.explanation, data.title))
 
 
 
